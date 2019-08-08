@@ -45,15 +45,16 @@ public class DaoEscola {
         }
     }
         public static boolean alterar(Escola objeto) {
-        String sql = "UPDATE escola SET nome = ?, sigla = ?, endereco = ?, nralunos = ?, area = ?, WHERE codigo=?";
+        String sql = "UPDATE escola SET nome = ?, sigla = ?, endereco = ?, nralunos = ?, area = ? WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
-            ps.setInt(1, objeto.getCodigo()); 
-            ps.setString(2, objeto.getNome());
-            ps.setString(3, objeto.getSigla());
-            ps.setString(4, objeto.getEndereco());
-            ps.setInt(5, objeto.getNralunos());
-            ps.setDouble(6, objeto.getArea());
+      
+            ps.setString(1, objeto.getNome());
+            ps.setString(2, objeto.getSigla());
+            ps.setString(3, objeto.getEndereco());
+            ps.setInt(4, objeto.getNralunos());
+            ps.setDouble(5, objeto.getArea());
+                        ps.setInt(6, objeto.getCodigo()); 
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -62,15 +63,11 @@ public class DaoEscola {
         }
     }
           public static boolean excluir(Escola objeto) {
-        String sql = "DELETE FROM nome = ?, sigla = ?, endereco = ?, nralunos = ?, area = ?, WHERE codigo=?";
+        String sql = "DELETE FROM escola WHERE codigo=?";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, objeto.getCodigo()); 
-            ps.setString(2, objeto.getNome());
-            ps.setString(3, objeto.getSigla());
-            ps.setString(4, objeto.getEndereco());
-            ps.setInt(5, objeto.getNralunos());
-            ps.setDouble(6, objeto.getArea());
+
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
